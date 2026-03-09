@@ -1,0 +1,19 @@
+.whole {
+    display: flex;
+    background-color: aquamarine;
+    margin: 20px;
+    padding: 30px;
+    flex-direction: column;
+}
+
+
+.smt1 {
+    background-color: red;
+    text-align: center;
+    padding: 10px 0px;
+}
+.smt2 {
+    background-color: lightblue;
+    text-align: center;
+    padding: 10px 0px;
+}
