@@ -27,6 +27,32 @@ input {
     
 }
 
+#categorycontainer {
+    display: flex;
+    flex-direction: row;
+    background: grey;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+
+.input-category-box{
+    background: darkgray;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: 0px 10px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#inputCategory {
+    display: block;
+    margin: 10px auto;
+    font-size: 20px;
+}
+
 #inputContainer {
     background-color:#696969;
     display:flex;
@@ -35,6 +61,7 @@ input {
     padding: 20px 50px;
     border-radius: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #additem-btn {
@@ -44,8 +71,19 @@ input {
     padding: 10px 10px;
     font-weight: bold;
     display: block;
+    margin: 10px auto;
+}
+
+#createcategory-btn {
+    background: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 10px;
+    font-weight: bold;
+    display: block;
     margin: 0 auto;
 }
+
 
 #additem-btn:hover {
     background-color: whitesmoke;
