@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, render_template
-import requests
+from flask import Flask, jsonify, render_template, request
+from main import generate_true_category
 
 app = Flask(__name__)
 
@@ -9,14 +9,16 @@ def home():
 
 @app.route("/get_inputtask", methods=["POST"])
 def process():
-    global inputTask
-    data = requests.get_json()
+    data = request.get_json()
     inputTask = data["inputtask"]
     categories = data["all_categories"]
 
+    result = generate_true_category(inputTask, categories)
+
+    print(categories)
+
     return jsonify({
-        "task": inputTask,
-        "categories": categories
+        "result": result
     })
 
 if __name__ == "__main__":

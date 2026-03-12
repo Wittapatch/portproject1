@@ -6,15 +6,21 @@ const inputCategory = document.getElementById("inputCategory");
 const categoryContainer = document.getElementById("categorycontainer");
 const categories = [];
 
-function addItem() {
+async function addItem() {
 
-    fetch("/get_data", {
+    const response = await fetch("/get_inputtask", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({inputtask: inputText, all_categories: categories})
-    })
+        body: JSON.stringify({
+            inputtask: inputText.value,
+            all_categories: categories
+        })
+    });
+
+    const data = await response.json();
+    const result = data.result;
 
     const row = document.createElement("div");
     row.className = "input-row";
@@ -25,6 +31,9 @@ function addItem() {
 
     const textInput = document.createElement("p");
     textInput.textContent = inputText.value;
+
+    const output = document.createElement("p");
+    output.textContent = result;
 
     checkbox.addEventListener("change", function(){
         if (checkbox.checked) {
@@ -38,11 +47,9 @@ function addItem() {
 
     row.appendChild(checkbox);
     row.appendChild(textInput);
+    row.appendChild(output);
 
     inputContainer.prepend(row);
-
-
-
     inputText.value = "";
 }
 
@@ -53,15 +60,13 @@ function addCategory() {
     const textCategory = document.createElement("h2");
     textCategory.textContent = inputCategory.value;
 
+    categories.push(inputCategory.value); // append to list 
+
     category.appendChild(textCategory);
     categoryContainer.prepend(category);
 
-    categories.push(inputCategory); // append to list 
-
     inputCategory.value = "";
 }
-
-
 
 
 addBtn.addEventListener("click", addItem);
