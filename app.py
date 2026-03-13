@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 from main import generate_true_category
+from database import add_data
 
 app = Flask(__name__)
 
@@ -14,8 +15,12 @@ def process():
     categories = data["all_categories"]
 
     result = generate_true_category(inputTask, categories)
+    result = result.strip().strip("'")
+
+    add_data(result, inputTask)
 
     print(categories)
+    print(result)
 
     return jsonify({
         "result": result

@@ -1,7 +1,6 @@
 const addBtn = document.getElementById("additem-btn");
 const createCategory = document.getElementById("createcategory-btn");
 const inputText = document.getElementById("inputtask");
-const inputContainer = document.getElementById("inputContainer");
 const inputCategory = document.getElementById("inputCategory");
 const categoryContainer = document.getElementById("categorycontainer");
 const categories = [];
@@ -21,35 +20,40 @@ async function addItem() {
 
     const data = await response.json();
     const result = data.result;
+    const h2List = document.querySelectorAll("#categorycontainer h2");
 
-    const row = document.createElement("div");
-    row.className = "input-row";
+    h2List.forEach(h2 => {
+        const row = document.createElement("div");
+        row.className = "input-row";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "task-checkbox";
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.className = "task-checkbox";
 
-    const textInput = document.createElement("p");
-    textInput.textContent = inputText.value;
+        const item = document.createElement("p");
+        item.textContent = inputText.value;
 
-    const output = document.createElement("p");
-    output.textContent = result;
+        checkbox.addEventListener("change", function(){
+            if (checkbox.checked) {
+                item.classList.add("done");
 
-    checkbox.addEventListener("change", function(){
-        if (checkbox.checked) {
-            textInput.classList.add("done");
+                setTimeout(function() {
+                    row.remove();
+                }, 100);
+            }
+        });
+        if (h2.textContent.trim().toLowerCase() === result.toLowerCase().replace("'", "")) {
+            const parent = h2.parentElement;
 
-            setTimeout(function() {
-                row.remove();
-            }, 100);
+            const item = document.createElement("p");
+            item.textContent = inputText.value;
+
+            row.appendChild(checkbox);
+            row.appendChild(item);
+
+            parent.appendChild(row);
         }
     })
-
-    row.appendChild(checkbox);
-    row.appendChild(textInput);
-    row.appendChild(output);
-
-    inputContainer.prepend(row);
     inputText.value = "";
 }
 

@@ -6,13 +6,20 @@ def generate_true_category(inputTask: str, categories: list[str]):
     model = OllamaLLM(model="llama3.2")
 
     template="""
-    You are an expert at distinguishing which task should be in what categories
+    You are a strict task classifier.
 
-    Here are the category list: {categories}
+    Available categories:
+    {categories}
 
-    Here is the input task: {inputtask}
+    Task:
+    {inputtask}
 
-    Here is the question to answer: {question}
+    Rules:
+    - Choose exactly one category from the available categories
+    - Return only the category name
+    - Do not explain
+    - Do no write anything else
+    - Just give the name of the category that the task should belong to
     """
 
     prompt = ChatPromptTemplate.from_template(template)

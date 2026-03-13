@@ -74,6 +74,12 @@ input {
     margin: 10px auto;
 }
 
+#additem-btn:hover {
+    background-color: whitesmoke;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 5px whitesmoke;
+}
+
 #createcategory-btn {
     background: white;
     border: none;
@@ -84,12 +90,12 @@ input {
     margin: 0 auto;
 }
 
-
-#additem-btn:hover {
+#createcategory-btn:hover {
     background-color: whitesmoke;
     transform: scale(1.05);
     box-shadow: 0px 0px 5px whitesmoke;
 }
+
 
 .input-row {
     display: flex;
