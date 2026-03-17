@@ -17,13 +17,14 @@ def process():
     result = generate_true_category(inputTask, categories)
     result = result.strip().strip("'")
 
+    categories[result].append(inputTask.strip())
+
     add_data(result, inputTask)
 
     print(categories)
-    print(result)
 
     return jsonify({
-        "result": result
+        "categories": categories
     })
 
 if __name__ == "__main__":

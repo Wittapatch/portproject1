@@ -32,8 +32,6 @@ def list_all_data():
     for row in rows:
         print(row)
 
-    
-
 def delete_all_data():
     conn = sqlite3.connect("todolist.db")
     cursor = conn.cursor()
