@@ -27,5 +27,8 @@ def process():
         "categories": categories
     })
 
+@app.route("get_signup_data", methods = ["Read"])
+def get_signup_data():
+
 if __name__ == "__main__":
     app.run(debug=True)
